@@ -69,10 +69,12 @@ class Election(EasyFrame):
         return votes
     
     def declare_winner(self):
+        
         votes = self.read_votes()
         v = list(votes.values())
         k = list(votes.keys())
-        winText = (k[v.index(max(v))], "is the Winner!")
+        winText1 = (k[v.index(max(v))])
+        winText = (winText1 + " is the Winner!")
         self.winner.setText(winText)
 
 def main():
