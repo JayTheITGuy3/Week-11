@@ -23,61 +23,27 @@ class LectureNotes(EasyFrame):
 
     def votes(self):
 
+        BidenVote = 0
+        TrumpVote = 0
+        AnupVote = 0
+
         votingAttempts = 1  # Starts with the first vote
-        recordKeeper = open("votes2020.txt", 'w')  # Initializes the file votes.txt to write data
 
         while (votingAttempts <= 1000):  # Makes sure that only 1,000 votes are casted
 
             voteDecision = random.randint(1, 3)  # Used to determine who earned a vote
 
             if (voteDecision == 1):  # If random number generator equals 1 Biden gets a vote
-                recordKeeper.write("Biden\n")
                 votingAttempts += 1
+                BidenVote += 1
 
             if (voteDecision == 2):  # If random number generator equals 2 Trump gets a vote
-                recordKeeper.write("Trump\n")
                 votingAttempts += 1
+                TrumpVote += 1
 
             if (voteDecision == 3):  # If random number generator equals 3 Hinz gets a vote
-                recordKeeper.write("Hinz\n")
                 votingAttempts += 1
-
-        recordKeeper.close()  # Closes the file connection to make sure there is no buffering issues
-
-        print("\nThe file votes2020.txt has been created in the same directory as this program.")
-        print("This file holds each individual vote and is ready to be used by the election.py program.")
-
-    def voteReader(self):  # Places each vote into a list
-
-        completeRecord = []
-
-        votingRecord = open("votes2020.txt", 'r')  # File that has each vote recorded
-        while True:
-            singleVote = votingRecord.readline()  # Reads each line which has one vote
-            if (singleVote == ""):  # If the end of the file is reach stop
-                break
-            completeRecord.append(singleVote)  # Append the voting results to he list
-
-        voteTracker(completeRecord)  # Passes the voting list to the next function to be tallied
-
-    def voteTracker(vote):  # Tallies each vote
-
-        """Initializes each candidates start vote to zero"""
-        BidenVote = 0
-        TrumpVote = 0
-        HinzVote = 0
-
-        for index in range(len(vote)):
-            if (vote[index] == "Biden\n"):  # If vote for Biden increment by 1
-                BidenVote += 1
-            elif (vote[index] == "Trump\n"):  # If vote for Trump increment by 1
-                TrumpVote += 1
-            else:  # If vote is for neither Biden or Trump, increase Hinz by 1
-                HinzVote += 1
-
-        voteDisplay(BidenVote, TrumpVote, HinzVote)  # Takes total tally to be transferred to display
-
-    def voteDisplay(BidenTotal, TrumpTotal, HinzTotal):  # Prints how many votes each candidate received
+                AnupVote += 1
 
         print("Joe Biden received a total of " + str(BidenTotal) + " votes!")
         print("Donald Trump received a total of " + str(TrumpTotal) + " votes!")
