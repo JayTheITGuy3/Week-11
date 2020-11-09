@@ -29,7 +29,7 @@ class Election(EasyFrame):
 
     def __init__(self):
         """Sets up the window and widgets."""
-        EasyFrame.__init__(self, title = "Election", width = 200,
+        EasyFrame.__init__(self, title = "Election", width = 320,
                            height = 320)
         self.setBackground("#989ca3")
 
@@ -37,8 +37,6 @@ class Election(EasyFrame):
                        columnspan = 2, command =self.votes)
         self.addButton(text="Count Votes", row = 1, column = 0,
                        columnspan = 2, command = self.read_votes)
-        self.addButton(text="Display Votes", row =2, column = 0,
-                       columnspan = 2, command = self.display_votes)
         self.addButton(text="Declare Winner", row =3, column = 0,
                        columnspan = 2, command = self.declare_winner)
 
@@ -63,16 +61,13 @@ class Election(EasyFrame):
             if candidate not in votes:
                 votes[candidate] = 1
             else:
-                    votes[candidate] += 1
-        f.close();           
-        return votes
-
-    def display_votes(self):
-        
-        votes = self.read_votes()
+                votes[candidate] += 1
+        f.close();
         for candidate in votes:
-            self.outputArea.setText("{0} {1} ".format(candidate, votes[candidate]))
-        
+            self.outputArea.setText(votes)
+            #self.outputArea.setText("{0} {1} ".format(candidate, votes[candidate]))
+        return votes
+    
     def declare_winner(self):
         votes = self.read_votes()
         v = list(votes.values())
