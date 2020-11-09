@@ -29,21 +29,22 @@ class Election(EasyFrame):
 
     def __init__(self):
         """Sets up the window and widgets."""
-        EasyFrame.__init__(self, title = "Election", width = 320,
+        EasyFrame.__init__(self, title = "Election", width = 380,
                            height = 320)
         self.setBackground("#989ca3")
 
         self.addButton(text="Get Votes",row = 0, column = 0,
-                       columnspan = 2, command =self.votes)
-        self.addButton(text="Count Votes", row = 1, column = 0,
-                       columnspan = 2, command = self.read_votes)
-        self.addButton(text="Declare Winner", row =3, column = 0,
-                       columnspan = 2, command = self.declare_winner)
+                       command =self.votes)
+        self.addButton(text="Count Votes", row = 0, column = 1,
+                       command = self.read_votes)
+        self.addButton(text="Declare Winner", row =0, column = 2,
+                       command = self.declare_winner)
 
-        self.outputArea = self.addTextArea("", row = 5, column = 0,
-                         columnspan = 2, width = 3, height = 5)
-        self.addLabel(text="Winner: ", row = 4, column = 0)
-        self.winner = self.addTextField(text="", row = 4, column = 1)
+        self.outputArea = self.addTextArea("", row = 2, column = 0,
+                         columnspan = 3, width = 3, height = 1)
+        self.addLabel(text="Winner: ", row = 3, column = 0)
+        self.winner = self.addTextField(text="", row = 3, column = 1,
+                                        columnspan = 2)
 
     def votes(self):
         candidates = ['Biden ','Dusek ','Trump ']
@@ -67,6 +68,7 @@ class Election(EasyFrame):
             self.outputArea.setText(votes)
             #self.outputArea.setText("{0} {1} ".format(candidate, votes[candidate]))
         return votes
+    
     
     def declare_winner(self):
         
